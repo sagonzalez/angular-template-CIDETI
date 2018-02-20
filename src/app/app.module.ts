@@ -42,6 +42,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AlertComponent } from './components/alert/alert.component';
 
+// notifications
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 //  Angular Animatios
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -82,6 +85,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    SimpleNotificationsModule.forRoot(),
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
