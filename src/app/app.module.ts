@@ -78,6 +78,7 @@ const routes: Routes = [
     RtSearchbarComponent,
     PaginatorComponent,
     ToolbarComponent,
+    ConfirmComponent,
     // pages
     LoginComponent,
     InicioComponent
