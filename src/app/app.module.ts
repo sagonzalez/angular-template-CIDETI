@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { AppComponent } from './app.component';
@@ -112,7 +113,8 @@ const routes: Routes = [
     MatCardModule,
     MatTabsModule,
     MatButtonToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule
   ],
   providers: [
     //  Services
