@@ -5,6 +5,20 @@ import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { SessionService } from './services/session.serv';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-root',
@@ -20,7 +34,18 @@ import { trigger, transition, style, animate } from '@angular/animations';
         animate('400ms cubic-bezier(.25,.8,.25,1)', style({ transform: 'translateY(-56px)' }))
       ])
     ])
-  ]
+  ],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
+
+    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
+    // `MatMomentDateModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
 })
 export class AppComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -36,7 +61,12 @@ export class AppComponent implements OnInit {
     animate: 'fromLeft',
     maxStack: 5
   };
-  constructor(private router: Router, private session: SessionService) {}
+  constructor(
+    private adapter: DateAdapter<any>,
+    private router: Router,
+    private session: SessionService) {
+    this.adapter.setLocale('esp');  // calendar config
+  } // constructor()
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
