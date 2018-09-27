@@ -26,6 +26,7 @@ import {
   MatCardModule,
   MatTabsModule,
   MatButtonToggleModule,
+  MatProgressSpinner,
   MatRadioModule
 } from '@angular/material';
 
@@ -114,6 +115,7 @@ const routes: Routes = [
     MatTabsModule,
     MatButtonToggleModule,
     MatRadioModule,
+    MatProgressSpinner,
     MatMenuModule
   ],
   providers: [
